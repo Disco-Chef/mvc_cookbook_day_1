@@ -1,18 +1,18 @@
 class View
   def ask_user_for_string(attribute)
-    puts "What is the #{attribute} of the recipe?"
+    puts "#{attribute}?"
     print "> "
     gets.chomp
   end
 
   def display_recipes(recipes)
     recipes.each_with_index do |recipe, index|
-      puts "#{index + 1}. #{recipe.name} - #{recipe.description}"
+      puts "#{index + 1}. #{recipe.name} - #{recipe.description} - Prep Time: #{recipe.prep_time}"
     end
   end
 
   def ask_user_for_index
-    puts "Which item number do you want to delete?"
+    puts "Which item number?"
     print "> "
     gets.chomp.to_i
   end

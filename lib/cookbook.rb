@@ -10,7 +10,6 @@ class Cookbook
   def add_to_recipes(recipe)
     @recipes << recipe
     # p recipe      # You can test your code even before using the View file!! Always test whenever -
-                    
     # p @recipes                # - possible. If for nothing else, then at least as a sanity check ;)
     save_csv
   end
@@ -22,12 +21,11 @@ class Cookbook
   def remove_recipe(index)
     @recipes.delete_at(index - 1)
     save_csv
-
   end
 
   def load_csv
     CSV.foreach(@csv_file) do |row|
-      recipe = Recipe.new( row[0], row[1] )
+      recipe = Recipe.new(row[0], row[1], row[2])
       @recipes << recipe
     end
   end
@@ -35,7 +33,7 @@ class Cookbook
   def save_csv
     CSV.open(@csv_file, 'wb') do |row|
       @recipes.each do |recipe|
-        row << [recipe.name, recipe.description]
+        row << [recipe.name, recipe.description, recipe.prep_time]
       end
     end
   end
